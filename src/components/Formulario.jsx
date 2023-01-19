@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react" 
 
-const Formulario = () => {
+const Formulario = ({pacientes, setPacientes}) => {
   
   //definir el estado del componente con state
   const [nombre, setNombre] = useState("")
@@ -16,11 +16,31 @@ const Formulario = () => {
 
     //validacion de formularios
 
-    if([nombre, propietario,email,fecha,sintomas].includes("")){
+    if([nombre, propietario, email, fecha, sintomas].includes("")){
       setError(true)
-      } else {
-      return setError(false)
-    }
+      return
+      } 
+      setError(false)
+
+      //construir un objeto de paciente
+      const objetoPaciente = {
+        nombre,
+        propietario,
+        email,
+        fecha,
+        sintomas
+      }
+      //console.log(objetoPaciente)
+      setPacientes([...pacientes, objetoPaciente])
+
+      //Reiniciar el formulario
+
+      setNombre("")
+      setPropietario("")
+      setEmail("")
+      setFecha("")
+      setSintomas("")
+      
   }
 
   return (
