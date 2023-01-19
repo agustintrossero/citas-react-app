@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react" 
 import Error from "./Error"
 
-const Formulario = ({pacientes, setPacientes}) => {
+const Formulario = ({pacientes, setPacientes, paciente}) => {
   
   //definir el estado del componente con state
   const [nombre, setNombre] = useState("")
@@ -11,6 +11,10 @@ const Formulario = ({pacientes, setPacientes}) => {
   const [sintomas, setSintomas] = useState("")
 
   const [error, setError] = useState(false)
+
+  useEffect(() => {
+    console.log(paciente)
+  }, [paciente])
 
   const generarId = () => {
     const random = Math.random().toString(36).substr(2);
