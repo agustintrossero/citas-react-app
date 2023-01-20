@@ -1,3 +1,5 @@
+import {animateScroll as scroll} from "react-scroll"
+
 const Paciente = ({paciente, setPaciente, eliminarPaciente}) => {
   //console.log(paciente)
 
@@ -36,7 +38,10 @@ const Paciente = ({paciente, setPaciente, eliminarPaciente}) => {
           <button
             className="py-2 px-10 bg-indigo-600 hover:bg-indigo-700 text-white uppercase font-bold rounded-md"
             type="button"
-            onClick={() =>setPaciente(paciente)}
+            onClick={() =>
+              setPaciente(paciente, scroll.scrollToTop())
+            }
+
           > Editar
             
           </button>
