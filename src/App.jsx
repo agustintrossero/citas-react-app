@@ -1,4 +1,4 @@
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import Header from "./components/Header"
 import Formulario from "./components/Formulario"
 import ListadoPacientes from "./components/ListadoPacientes"
@@ -7,8 +7,20 @@ import ListadoPacientes from "./components/ListadoPacientes"
 
 function App() {
 
-    const [pacientes, setPacientes] = useState([])
+    const [pacientes, setPacientes] = useState(JSON.parse(localStorage.getItem('pacientes')) ?? []);
     const [paciente, setPaciente] = useState({})
+
+    /*
+    implementando localStorage para no perder los datos cada vez q cerramos la app, 
+    LocalStorage solo recibe strings asi q hay q usar useEffect. le decimos que cada vez que
+    haya un cambio en pacientes
+    */
+
+    useEffect(() => {
+    //console.log("Componente listo o cambio pacientes") // siempre que hay cualquier cambio va a ser detectado desde aqui, entonces aqui le decimos que LocalStorage retenga la informacion
+    localStorage.setItem('pacientes', JSON.stringify(pacientes))
+    }, [pacientes])
+
 
     //creamos la funcion de eliminar pacientes
     const eliminarPaciente = (id) =>{
