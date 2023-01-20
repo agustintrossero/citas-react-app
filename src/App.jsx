@@ -18,6 +18,7 @@ function App() {
         pacientes={pacientes}
         setPacientes={setPacientes}
         paciente={paciente} //para conseguir la info del paciente que se quiere editar
+        setPaciente={setPaciente} //para poder limpiar de consola el paciente anterior que fue editado
         />
         <ListadoPacientes
         pacientes={pacientes}

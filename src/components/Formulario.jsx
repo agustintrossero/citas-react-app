@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react" 
 import Error from "./Error"
 
-const Formulario = ({pacientes, setPacientes, paciente}) => {
+const Formulario = ({pacientes, setPacientes, paciente, setPaciente}) => {
   
   //definir el estado del componente con state
   const [nombre, setNombre] = useState("")
@@ -45,11 +45,29 @@ const Formulario = ({pacientes, setPacientes, paciente}) => {
         propietario,
         email,
         fecha,
-        sintomas,
-        id: generarId()
+        sintomas
       }
       //console.log(objetoPaciente)
-      setPacientes([...pacientes, objetoPaciente])
+      
+
+
+      //para identificar el objeto a editar hacemos un if() consultando si el paciente tiene id (ya que fue generado al crear un registro de paciente)
+      if(paciente.id){
+        //console.log("editando")
+        objetoPaciente.id = paciente.id // le agregamos al objeto a ser editado el id
+
+        const pacientesActualizados = pacientes.map(pacienteState => pacienteState.id === paciente.id ? objetoPaciente : pacienteState)
+        setPacientes(pacientesActualizados)
+        setPaciente({}) // para reiniciar el objeto a cero  una vez q fue editado y limpiar la consola
+
+      } else {
+        //console.log("nuevo registro de paciente")
+        objetoPaciente.id = generarId()  // si el objeto paciente no tiene ID se lo genera
+        setPacientes([...pacientes, objetoPaciente])//toma el una copia de pacientes que era un objeto vacio y le agrega el nuevo objeto de paciente
+
+      }
+
+      
 
       //Reiniciar el formulario
 
