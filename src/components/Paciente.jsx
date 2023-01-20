@@ -1,7 +1,15 @@
-const Paciente = ({paciente, setPaciente}) => {
+const Paciente = ({paciente, setPaciente, eliminarPaciente}) => {
   //console.log(paciente)
 
-  const {nombre, propietario, email, fecha, sintomas} = paciente
+  const {nombre, propietario, email, fecha, sintomas, id} = paciente //agregamos el id, asi puede ser reconocido a la hora de eliminar
+
+  const handleEliminar = ()=>{
+    const respuesta = confirm("¿Deseas eliminar este paciente?")
+    if(respuesta) {
+      eliminarPaciente(id) 
+    }
+  }
+
   return (
     <div className="bg-white m-3 rounded-xl px-5 py-10 shadow-md mx-5 my-10">
         <p className="font-bold mb-3 text-gray-700 uppercase">
@@ -35,6 +43,7 @@ const Paciente = ({paciente, setPaciente}) => {
           <button
             className="py-2 px-10 bg-red-600 hover:bg-red-700 text-white uppercase font-bold rounded-md"
             type="button"
+            onClick={handleEliminar}
           > Eliminar
             
           </button>

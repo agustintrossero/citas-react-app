@@ -1,7 +1,7 @@
 import Paciente from "./Paciente"
 import {useEffect} from "react"
 
-const ListadoPacientes = ({pacientes, setPaciente}) => {
+const ListadoPacientes = ({pacientes, setPaciente, eliminarPaciente}) => {
    
  /*  cuando se crea un nuevo paciente aparece en consola
  useEffect(() =>{
@@ -28,6 +28,7 @@ const ListadoPacientes = ({pacientes, setPaciente}) => {
                       key={paciente.id}
                       paciente={paciente}
                       setPaciente={setPaciente}
+                      eliminarPaciente={eliminarPaciente}//le asignamos la funcion al props
                     />
                   )
                 )}
